@@ -1,0 +1,73 @@
+xcuserdata
+
+# build files
+/build/
+/out/
+/bin/
+/project/.gradle/
+/project/.idea/
+/project/build/
+/project/out/
+/project/bin/
+
+# gradle
+.gradle/
+.gradletasknamecache
+**/local.properties
+
+# KMP & Kotlin cache
+.kotlin/
+.kotlin-deps/
+.kotlin-build/
+.kotlin-project/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# KMP genrated
+**/build/
+**/out/
+**/bin/
+
+# KMP dependencies
+**/libs/
+**/dependencies/
+
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Android
+androidApp/build/
+androidApp/app/build/
+androidApp/.cxx/
+androidApp/.externalNativeBuild/
+androidApp/.gradle/
+androidApp/local.properties
+
+# iOS
+iosApp/.swiftpm/
+iosApp/DerivedData/
+iosApp/build/
+iosApp/Pods/
+
+# KMP Native
+**/native/build/
+**/native/.konan/
