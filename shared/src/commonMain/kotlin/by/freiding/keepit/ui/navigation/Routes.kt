@@ -7,4 +7,7 @@ sealed class Routes {
 
     @Serializable
     data object MainScreen
+
+    @Serializable
+    data object AddLink
 }

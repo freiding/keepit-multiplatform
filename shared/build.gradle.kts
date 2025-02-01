@@ -53,6 +53,11 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             // Datetime
             implementation(libs.kotlinx.datetime)
+            // Images
+            implementation(libs.coil.compose)
+            implementation(libs.coil.compose.core)
+            implementation(libs.coil.mp)
+            implementation(libs.coil.network.ktor)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
