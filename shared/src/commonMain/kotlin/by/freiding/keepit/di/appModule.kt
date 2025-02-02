@@ -7,6 +7,7 @@ import by.freiding.keepit.domain.usecase.links.SavePageDataToStorageUseCase
 import by.freiding.keepit.ui.screen.links.add.AddLinkScreenViewModel
 import by.freiding.keepit.ui.screen.main.MainScreenViewModel
 import by.freiding.keepit.ui.screen.root.RootViewModel
+import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -24,4 +25,6 @@ val appModule = module {
     viewModelOf(::RootViewModel)
     viewModelOf(::MainScreenViewModel)
     viewModelOf(::AddLinkScreenViewModel)
-}
+}.plus(sharedAppModule())
+
+expect fun sharedAppModule(): Module

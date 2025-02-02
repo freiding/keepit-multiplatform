@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -58,15 +60,34 @@ kotlin {
             implementation(libs.coil.compose.core)
             implementation(libs.coil.mp)
             implementation(libs.coil.network.ktor)
+            // Database
+            api(libs.room.runtime)
+            implementation(libs.sqlite.bundeled)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
+        }
+        androidMain.dependencies {
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.koin.android)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
         }
     }
+    dependencies {
+        debugImplementation(compose.uiTooling)
+        add("kspAndroid", libs.room.compiler)
+        add("kspIosSimulatorArm64", libs.room.compiler)
+        add("kspIosX64", libs.room.compiler)
+        add("kspIosArm64", libs.room.compiler)
+    }
+
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {

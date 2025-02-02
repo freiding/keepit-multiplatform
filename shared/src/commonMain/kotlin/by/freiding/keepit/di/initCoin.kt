@@ -11,7 +11,7 @@ fun initKoin(
     startKoin {
         config?.invoke(this)
         modules(
-            appModule,
+            *appModule.toTypedArray(),
             *modules,
         )
     }
