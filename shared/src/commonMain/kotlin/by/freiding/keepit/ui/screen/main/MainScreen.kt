@@ -29,6 +29,12 @@ fun MainScreen(
             }) {
                 Text("Add")
             }
+
+            Button(onClick = {
+                navController.navigate(Routes.LinksList)
+            }) {
+                Text("Links")
+            }
         }
 
     }

@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import by.freiding.keepit.ui.navigation.Routes
 import by.freiding.keepit.ui.screen.links.add.AddLinkScreen
+import by.freiding.keepit.ui.screen.links.list.StoredLinksListScreen
 import by.freiding.keepit.ui.screen.main.MainScreen
 
 @Composable
@@ -17,7 +18,8 @@ fun MainNavigator(navController: NavHostController) {
         composable<Routes.AddLink> {
             AddLinkScreen(navController)
         }
-
-
+        composable<Routes.LinksList> {
+            StoredLinksListScreen(navController)
+        }
     }
 }

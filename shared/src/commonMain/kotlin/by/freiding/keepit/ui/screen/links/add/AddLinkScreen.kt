@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import by.freiding.keepit.domain.model.RequestResultState
 import by.freiding.keepit.ui.Padding
 import by.freiding.keepit.ui.components.ScreenWrapper
 import by.freiding.keepit.ui.components.toolbar.AppToolbar
@@ -36,6 +38,12 @@ fun AddLinkScreen(
     val url by viewModel.url.collectAsState()
     val pageDataState by viewModel.pageData.collectAsState()
     val savingState by viewModel.savingState.collectAsState()
+
+    LaunchedEffect(savingState) {
+        if (savingState is RequestResultState.Success) {
+            navController.navigateUp()
+        }
+    }
 
     ScreenWrapper(screenName = "AddLink") {
         Scaffold(
@@ -82,6 +90,7 @@ fun AddLinkScreen(
                             modifier = Modifier.clickable {
                                 if (clipboard.hasText()) {
                                     viewModel.onUrlChanged(clipboard.getText()?.text ?: "")
+                                    viewModel.onUrlInputCompleted()
                                 }
                             }
                         )

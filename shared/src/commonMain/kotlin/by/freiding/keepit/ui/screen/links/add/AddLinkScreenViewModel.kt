@@ -25,9 +25,9 @@ class AddLinkScreenViewModel(
         MutableStateFlow(RequestResultState.none())
     val pageData: StateFlow<RequestResultState<PageData>> = _pageData.asStateFlow()
 
-    private val _savingState: MutableStateFlow<RequestResultState<Nothing>> =
+    private val _savingState: MutableStateFlow<RequestResultState<String>> =
         MutableStateFlow(RequestResultState.None)
-    val savingState: StateFlow<RequestResultState<Nothing>> = _savingState.asStateFlow()
+    val savingState: StateFlow<RequestResultState<String>> = _savingState.asStateFlow()
 
     private val _url: MutableStateFlow<String> = MutableStateFlow("")
     val url: StateFlow<String> = _url.asStateFlow()

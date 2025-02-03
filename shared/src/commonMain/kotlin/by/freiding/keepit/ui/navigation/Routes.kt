@@ -10,4 +10,7 @@ sealed class Routes {
 
     @Serializable
     data object AddLink
+
+    @Serializable
+    data object LinksList
 }
