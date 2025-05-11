@@ -22,3 +22,10 @@ data object Padding {
     val XXL = 48.dp
     val XXXL = 64.dp
 }
+
+data object CornerRadius {
+    val XS = 4.dp
+    val S = 8.dp
+    val M = 16.dp
+    val L = 24.dp
+}

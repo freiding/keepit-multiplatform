@@ -18,8 +18,5 @@ fun MainNavigator(navController: NavHostController) {
         composable<Routes.AddLink> {
             AddLinkScreen(navController)
         }
-        composable<Routes.LinksList> {
-            StoredLinksListScreen(navController)
-        }
     }
 }

@@ -6,11 +6,21 @@ import kotlinx.serialization.Serializable
 sealed class Routes {
 
     @Serializable
-    data object MainScreen
+    data object MainScreen: Routes()
 
     @Serializable
-    data object AddLink
+    data object AddLink: Routes()
+
 
     @Serializable
-    data object LinksList
+    data object LinksList: Routes()
+
+
+    @Serializable
+    data object NotesList: Routes()
+
+
+    @Serializable
+    data object Settings: Routes()
+
 }
