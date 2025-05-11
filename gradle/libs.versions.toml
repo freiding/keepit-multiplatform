@@ -14,7 +14,6 @@ jsoup = "1.15.3"
 koin = "4.0.4"
 kotlin = "2.1.20"
 kotlinx-datetime = "0.6.2"
-kotzila = "1.0.1"
 ktor = "3.1.2"
 ktlint = "1.5.0"
 ktlint-plugin = "11.1.0"
@@ -69,10 +68,8 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlzila-plugin = { id = "io.kotzilla:kotzilla-plugin", version.ref = "kotzila" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref="ktlint-plugin"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
