@@ -2,11 +2,7 @@ package by.freiding.keepit.ui.screen.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +10,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import by.freiding.keepit.ui.components.ScreenWrapper
 import by.freiding.keepit.ui.components.bottomnavbar.BottomNavigationBar
 import by.freiding.keepit.ui.components.bottomnavbar.NavigationItem
 import by.freiding.keepit.ui.navigation.Routes
@@ -35,7 +30,11 @@ fun MainScreen(
             }
         },
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
+        Box(
+            modifier = Modifier.padding(
+                bottom = innerPadding.calculateBottomPadding(),
+            ),
+        ) {
             BottomBarNavigator(
                 bottomBarNavController = bottomBarNavController,
                 mainNavController = navController,
