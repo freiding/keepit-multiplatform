@@ -19,7 +19,7 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_1_8)
+                    jvmTarget.set(JvmTarget.JVM_23)
                 }
             }
         }
@@ -123,7 +123,7 @@ ktlint {
 }
 
 // format Kotlin code using KtLint before the project is built.
-tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+//tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 //**************************************************************************************************
 //                                  DETEKT CONFIGURATION
