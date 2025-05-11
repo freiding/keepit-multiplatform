@@ -1,4 +1,6 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     alias(libs.plugins.compose.multiplatform)
@@ -8,6 +10,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -97,7 +101,80 @@ android {
         minSdk = 26
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_23
+        targetCompatibility = JavaVersion.VERSION_23
     }
 }
+
+
+//**************************************************************************************************
+//                                  KTLINT CONFIGURATION
+//**************************************************************************************************
+ktlint {
+    android = true // Enable Android-specific linting rules
+    ignoreFailures = false // Fail the build if KtLint finds any issues
+//    disabledRules = ["final-newline", "no-wildcard-imports", "max-line-length"]
+
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.HTML)
+        reporter(ReporterType.JSON)
+    }
+}
+
+// format Kotlin code using KtLint before the project is built.
+tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+
+//**************************************************************************************************
+//                                  DETEKT CONFIGURATION
+//**************************************************************************************************
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    config.setFrom(
+        File(rootProject.rootDir, "config/detekt/detekt.yml"),
+        File(rootProject.rootDir, "config/detekt/detekt-compose.yml"),
+    )
+    // Applies the config files on top of detekt's default config file. `false` by default.
+    buildUponDefaultConfig = false
+
+    // Turns on all the rules. `false` by default.
+    allRules = false
+
+    // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
+    baseline = file("detekt-baseline.xml")
+
+    // Disables all default detekt rulesets and will only run detekt with custom rules
+    // defined in plugins passed in with `detektPlugins` configuration. `false` by default.
+    disableDefaultRuleSets = false
+
+    // Adds devug output during task execution. `false` by default.
+    debug = false
+
+    // If set to `true` the build does not fail when the
+    // maxIssues count was reached. Defaults to `false`.
+    ignoreFailures = false //true
+
+    parallel = true
+
+    // Has to be specified for it to correctly report the paths to GitLab
+    basePath = rootDir.toString()
+}
+
+tasks.withType<Detekt>().configureEach {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        sarif.required.set(true)
+        md.required.set(true)
+        custom {
+            reportId = "DetektGitlabReport"
+            // This tells detekt, where it should write the report to,
+            // you have to specify this file in the gitlab pipeline config.
+            outputLocation.set(file(layout.buildDirectory.file("reports/detekt/gitlab.json")))
+        }
+    }
+}
+
+dependencies.add("detektPlugins", libs.detektPlugin.nlopez.composeRules)
+dependencies.add("detektPlugins", libs.detektPlugin.cromfire.gitlab.report)
+dependencies.add("detektPlugins", libs.detektPlugin.artubosch.report.html)
