@@ -8,5 +8,5 @@ fun MainViewController() = ComposeUIViewController(
         onFocusBehavior = OnFocusBehavior.DoNothing
     }
 ) {
-    App()
+    KeepItApp()
 }

@@ -27,9 +27,12 @@ private fun darkCustomColorScheme(): CustomColorScheme = CustomColorScheme(
     secondaryText = Color.LightGray
 )
 
-@Composable
-fun colorScheme(isDark: Boolean = isSystemInDarkTheme()): CustomColorScheme = if (isDark) {
-    darkCustomColorScheme()
-} else {
-    lightCustomColorScheme()
-}
+val colorScheme: CustomColorScheme
+    @Composable get() {
+        val isDark: Boolean = isSystemInDarkTheme()
+        return if (isDark) {
+            darkCustomColorScheme()
+        } else {
+            lightCustomColorScheme()
+        }
+    }
